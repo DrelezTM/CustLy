@@ -3,5 +3,5 @@ DB_CONFIG = {
     "host": "localhost",
     "user": "root",
     "password": "",
-    "database": "ziids_products"
+    "database": "urlshortener"
 }

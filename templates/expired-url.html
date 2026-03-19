@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Expired | Link Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .hourglass {
+            animation: flip 3s ease-in-out infinite;
+        }
+        @keyframes flip {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        .sand {
+            animation: pour 3s ease-in-out infinite;
+        }
+        @keyframes pour {
+            0%, 100% { opacity: 1; transform: translateY(0); }
+            50% { opacity: 0.3; transform: translateY(2px); }
+        }
+
+        .pulse-ring {
+            animation: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulseRing {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+    <header class="pt-12 pb-6 flex justify-center fade-in">
+        <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center shadow-lg">
+                <span class="text-white font-bold text-lg">/</span>
+            </div>
+            <span class="font-semibold text-xl tracking-tight">Link Manager</span>
+        </a>
+    </header>
+
+    <main class="flex-1 flex items-center justify-center px-6 fade-in">        
+        <div class="w-full max-w-lg text-center">
+            <div class="mb-8 relative flex flex-col items-center">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-40 h-40 bg-amber-100 rounded-full animate-ping opacity-30"></div>
+                </div>
+
+                <div class="relative z-10 flex items-center justify-center w-24 h-24 bg-white rounded-3xl shadow-md border border-gray-200">
+                    <svg class="w-12 h-12 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" class="sand" opacity="0.5"></path>
+                    </svg>
+                </div>
+
+                <span class="mt-4 px-4 py-1 bg-amber-100 text-amber-700 text-sm font-semibold rounded-full uppercase tracking-wide shadow-sm">
+                    Expired
+                </span>
+
+            </div>
+
+            <h1 class="text-3xl font-light text-gray-900 mb-3">Link has expired</h1>
+            <p class="text-gray-500 text-sm mb-2 max-w-sm mx-auto leading-relaxed">
+                This shortened URL is no longer available because it has passed its expiration date.
+            </p>
+            
+            {% if expired_at %}
+            <p class="text-xs text-gray-400 mb-8">
+                Expired on <span class="font-medium text-gray-600">{{ expired_at }}</span>
+            </p>
+            {% else %}
+            <p class="text-xs text-gray-400 mb-8">
+                The owner set an expiration date for this link.
+            </p>
+            {% endif %}
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a 
+                    href="/add" 
+                    class="w-full sm:w-auto bg-black text-white font-medium py-3 px-8 rounded-xl hover:bg-gray-800 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 group"
+                >
+                    <svg class="w-5 h-5 group-hover:rotate-90 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    <span>Create New Link</span>
+                </a>
+
+                <a 
+                    href="/" 
+                    class="w-full sm:flex-1 max-w-[200px] bg-white text-gray-700 font-medium py-3 px-6 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-gray-300 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
+                >
+                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+
+            <div class="mt-10 bg-gray-100 rounded-xl p-4 max-w-sm mx-auto">
+                <div class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-gray-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="text-left">
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            Link owners can set expiration dates for temporary content, event pages, or time-sensitive promotions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 pt-6 border-t border-gray-200">
+                <p class="text-xs text-gray-400 uppercase tracking-wider mb-4">What you can do</p>
+                <div class="flex flex-wrap items-center justify-center gap-4 text-sm">
+                    <a href="/add" class="text-gray-600 hover:text-black transition-colors">Create your own link</a>
+                    <span class="text-gray-300">•</span>
+                    <a href="/" class="text-gray-600 hover:text-black transition-colors">View your links</a>
+                    <span class="text-gray-300">•</span>
+                    <button onclick="copyCurrentUrl()" class="text-gray-600 hover:text-black transition-colors">Copy this URL</button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="py-6 text-center">
+        <p class="text-xs text-gray-400">
+            Error code: 410 Gone • <span id="timestamp"></span>
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString('id-ID', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+
+        function copyCurrentUrl() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.classList.add('text-green-600');
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('text-green-600');
+                }, 2000);
+            });
+        }
+
+        const hourglass = document.querySelector('.hourglass');
+        let rotation = 0;
+        
+        setInterval(() => {
+            rotation += 180;
+            hourglass.style.transform = `rotate(${rotation}deg)`;
+        }, 3000);
+    </script>
+
+</body>
+</html>
