@@ -1,0 +1,7 @@
+Flask==3.0.3
+mysql-connector-python==8.4.0
+Werkzeug==3.0.3
+PyJWT==2.9.0
+requests==2.32.3
+user-agents==2.2.0
+ua-parser==0.18.0
