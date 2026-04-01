@@ -1,9 +1,9 @@
-# CustLy
+# CustLy | URL Shortener
 <p align="center">
-  <img alt="@urlshortener" style="width: 150px;" src="https://github.com/DrelezTM/URL-Shortener/blob/main/public/CustLy.png">
+  <img alt="@CustLy" style="width: 150px;" src="https://github.com/DrelezTM/CustLy/blob/main/public/CustLy.png">
 </p>
 <div align="center">
-  <h3>URL Shortener</h3>
+  <h3>CustLy | URL Shortener</h3>
   <p>A URL Shortener application with analytics dashboard built using <a href="https://flask.palletsprojects.com/">Flask</a> and <a href="https://www.mysql.com/">MySQL</a></p>
 </div>
 <div align="center">
