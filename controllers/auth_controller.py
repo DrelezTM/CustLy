@@ -18,8 +18,23 @@ def register():
         password = generate_password_hash(request.form['password'])
 
         db = get_db_connection()
-        cursor = db.cursor()
-        cursor.execute("INSERT INTO users (name, email, password) VALUES (%s, %s, %s)", (name, email, password))
+        cursor = db.cursor(dictionary=True)
+
+        cursor.execute("SELECT id FROM users WHERE email = %s", (email,))
+        user = cursor.fetchone()
+
+        if user:
+            cursor.close()
+            db.close()
+            return render_template(
+                "register.html",
+                error="Email sudah terdaftar."
+            )
+
+        cursor.execute(
+            "INSERT INTO users (name, email, password) VALUES (%s, %s, %s)",
+            (name, email, password)
+        )
         db.commit()
 
         cursor.close()
