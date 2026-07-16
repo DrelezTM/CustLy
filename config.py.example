@@ -1,7 +1,0 @@
-SECRET_KEY = "super_secret_key_here"
-DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-    "password": "",
-    "database": "urlshortener"
-}
