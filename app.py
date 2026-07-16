@@ -3,7 +3,7 @@ from flask import render_template
 from controllers.auth_controller import auth_bp
 from controllers.url_controller import url_bp
 
-app = Flask(__name__, static_folder='public', static_url_path='/assets')
+app = Flask(__name__, static_folder='assets', static_url_path='/assets')
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(url_bp)

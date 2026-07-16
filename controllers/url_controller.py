@@ -137,6 +137,9 @@ def delete(user_id, id):
 
 @url_bp.route('/<slug>', methods=['GET', 'POST'])
 def redirect_slug(slug):
+    if "." in slug:
+        return render_template("not-found.html"), 404
+        
     db = get_db_connection()
     cursor = db.cursor(dictionary=True)
     cursor.execute("SELECT * FROM urls WHERE slug=%s", (slug,))
